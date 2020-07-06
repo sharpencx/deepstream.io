@@ -98,6 +98,7 @@ export const parse = (rule: boolean | string, variables: any) => {
   const args = ['_', 'user', 'data', 'oldData', 'now', 'action', 'name'].concat(variables)
   args.push(`return ${rule};`)
 
+  // eslint-disable-next-line prefer-spread
   ruleObj.fn = Function.apply(null, args)
   ruleObj.hasOldData = !!rule.match(OLD_DATA_REGEXP)
   ruleObj.hasData = !!rule.match(DATA_REGEXP)

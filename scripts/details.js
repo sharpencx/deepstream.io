@@ -19,7 +19,7 @@ if( process.argv[2] === 'VERSION' ) {
 	console.log( 'ERROR: Pass in VERSION or NAME as env variable' );
 }
 
-function writeMetaFile() {
+function writeMetaFile () {
 	var meta = {
 		deepstreamVersion: pkg.version,
 		gitRef: exec( 'git rev-parse HEAD' ).toString().trim(),

@@ -25,8 +25,8 @@ const mainModule = require('../licenses.json')
 const moduleNames = []
 traverseDependencies(mainModule)
 
-function traverseDependencies(module) {
-  for (let dependency in module.dependencies) {
+function traverseDependencies (module) {
+  for (const dependency in module.dependencies) {
     moduleNames.push(dependency)
     traverseDependencies(module.dependencies[dependency])
   }
@@ -67,7 +67,7 @@ var count = 0
 doLevel(projPath)
 
 
-function doLevel(nodePath) {
+function doLevel (nodePath) {
   var pkg = require(path.join(nodePath, 'package.json'))
   if (topPkg.name !== pkg.name && moduleNames.indexOf(pkg.name) === -1) {
     return
@@ -129,7 +129,7 @@ function doLevel(nodePath) {
       console.log(PRE_HEADER)
       console.log('')
       console.log(HEADER)
-      modules.forEach(function(m) {
+      modules.forEach(function (m) {
         console.log((modules.indexOf(m)+1) + ' ----------------------------------------------------------------------------')
         console.log(m.name + '@' + m.version)
         console.log(m.url)
@@ -212,7 +212,7 @@ function isModuleDirectory (dirPath, cb) {
   })
 }
 
-function logError(err, cb) {
+function logError (err, cb) {
   console.error('ERROR', err)
   return cb
 }

@@ -209,7 +209,7 @@ describe('utils', () => {
     })
   })
 
-  it('creates a hash', async() => {
+  it('creates a hash', async () => {
     const password = 'userAPass'
     const settings = {
       algorithm: 'md5',

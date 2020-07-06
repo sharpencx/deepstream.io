@@ -6,7 +6,7 @@ import { getDSInfo } from '../src/config/ds-info'
 // TS4023: Exported variable 'command' has or is using name 'local.Command'
 // from external module "node_modules/commander/typings/index" but cannot be named.
 // tslint:disable-next-line: no-empty-interface
-export interface Command extends commander.Command { }
+export type Command = commander.Command
 
 export const info = (program: Command) => {
   program

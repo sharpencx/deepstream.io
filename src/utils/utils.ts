@@ -4,7 +4,7 @@ import * as crypto from 'crypto'
 /**
  * Returns a unique identifier
  */
-export let getUid = function (): string {
+export const getUid = function (): string {
   return `${Date.now().toString(36)}-${(Math.random() * 10000000000000000000).toString(36)}`
 }
 
@@ -12,7 +12,7 @@ export let getUid = function (): string {
  * Takes a key-value map and returns
  * a map with { value: key } of the old map
  */
-export let reverseMap = function (map: any): any {
+export const reverseMap = function (map: any): any {
   const reversedMap = {}
 
   for (const key in map) {
@@ -27,7 +27,7 @@ export let reverseMap = function (map: any): any {
  * Extended version of the typeof operator. Also supports 'array'
  * and 'url' to check for valid URL schemas
  */
-export let isOfType = function (input: any, expectedType: string): boolean {
+export const isOfType = function (input: any, expectedType: string): boolean {
   if (input === null) {
     return expectedType === 'null'
   } else if (expectedType === 'array') {
@@ -43,7 +43,7 @@ export let isOfType = function (input: any, expectedType: string): boolean {
  * json schema in the form { key: type }
  * @returns {Boolean|Error}
  */
-export let validateMap = function (map: any, throwError: boolean, schema: any): any {
+export const validateMap = function (map: any, throwError: boolean, schema: any): any {
   let error
   let key
 
@@ -74,9 +74,9 @@ export let validateMap = function (map: any, throwError: boolean, schema: any): 
  * Multi Object recursive merge
  * @param {Object} multiple objects to be merged into each other recursively
  */
-export let merge = function (...args: any[]) {
+export const merge = function (...args: any[]) {
   const result = {}
-  const objs = Array.prototype.slice.apply(arguments)
+  const objs = [...args]
   let i
 
   const internalMerge = (objA: any, objB: any) => {
@@ -99,11 +99,11 @@ export let merge = function (...args: any[]) {
   return result
 }
 
-export let getRandomIntInRange = function (min: number, max: number): number {
+export const getRandomIntInRange = function (min: number, max: number): number {
   return min + Math.floor(Math.random() * (max - min))
 }
 
-export let spliceRandomElement = function (array: any[]): any {
+export const spliceRandomElement = function (array: any[]): any {
   const randomIndex = getRandomIntInRange(0, array.length)
   return array.splice(randomIndex, 1)[0]
 }
@@ -112,7 +112,7 @@ export let spliceRandomElement = function (array: any[]): any {
  * Randomize array element order in-place.
  * Using Durstenfeld shuffle algorithm.
  */
-export let shuffleArray = function (array: any[]): any[] {
+export const shuffleArray = function (array: any[]): any[] {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     const temp = array[i]
@@ -126,7 +126,7 @@ export let shuffleArray = function (array: any[]): any[] {
  * Recursively freeze a deeply nested object
  * https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
  */
-export let deepFreeze = function (obj: any): any {
+export const deepFreeze = function (obj: any): any {
 
   // Retrieve the property names defined on obj
   const propNames = Object.getOwnPropertyNames(obj)
@@ -166,11 +166,11 @@ export const PromiseDelay = (timeout: number) => {
   return new Promise((resolve) => setTimeout(resolve, timeout))
 }
 
- /**
-  * Utility method for creating hashes including salts based on
-  * the provided parameters
-  */
-export const createHash = (password: string, settings: { iterations: number, keyLength: number, algorithm: string }, salt: string = crypto.randomBytes(16).toString('base64')): Promise<{ hash: Buffer, salt: string}> => {
+/**
+ * Utility method for creating hashes including salts based on
+ * the provided parameters
+ */
+export const createHash = (password: string, settings: { iterations: number, keyLength: number, algorithm: string }, salt: string = crypto.randomBytes(16).toString('base64')): Promise<{ hash: Buffer, salt: string }> => {
   return new Promise((resolve, reject) => {
     crypto.pbkdf2(
       password,
