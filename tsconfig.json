@@ -9,7 +9,9 @@
     "resolveJsonModule": true,
     "noUnusedLocals": true,
     "strict": true,
-    "lib": ["es2018"],
+    "lib": [
+      "es2018"
+    ],
     "types": [
       "node",
       "mocha"
@@ -21,7 +23,8 @@
     "src/**/*",
     "src/**/*.json",
     "test-e2e/**/*",
-    "package.json", "types/uws.d.ts"
+    "package.json",
+    "types/uws.d.ts"
   ],
   "exclude": [
     "**/*.spec.ts",

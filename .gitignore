@@ -50,3 +50,6 @@ licenses.json
 
 # Typescript
 dist
+
+# Local vars
+.env
